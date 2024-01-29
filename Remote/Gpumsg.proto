@@ -1,0 +1,10 @@
+syntax  = "proto3";
+package Remote;
+
+option go_package="./";
+import "protobuf/protomsg.proto";
+message Unit{
+    uint32 value = 1;
+    string name = 2 ;
+    protobuf.CPU cpu =3;
+}

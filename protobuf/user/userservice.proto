@@ -1,0 +1,19 @@
+syntax = "proto3";
+package protobuf.user;
+option go_package="test/protobuf/user";
+
+import "protobuf/user/protomsg.proto";
+
+service UserService {
+    rpc GetUser(GetUserRequest) returns (GetUserResponse) {};
+}
+
+message GetUserRequest{
+string id =1;
+
+}
+
+message  GetUserResponse {
+    CPU cpu = 1;
+}
+
