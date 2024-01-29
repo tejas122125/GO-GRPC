@@ -7,11 +7,6 @@ message CPU {
     string brand = 1;
     string name = 2;
     uint32 cores = 3;
-    optional int64 age =4;
-    Status student =5;
 
 }
-enum Status {
-    PASS =0;
-    FAIL=1;
-}
+
