@@ -1,0 +1,21 @@
+syntax = "proto3";
+package wearable.device;
+option go_package="test/protobuf/wearable";
+
+// import "protobuf/user/protomsg.proto";
+
+service WearableService {
+    rpc BeatsPerMinute(BeatsPerMinutesRequest) returns (stream BeatsPerMinuteResponse) {};
+}
+// always use camel case while writing global struct type and field values
+
+message BeatsPerMinutesRequest{
+string id =1;
+
+}
+
+message  BeatsPerMinuteResponse {
+   uint32 value =1;
+   uint32 minute =2;
+}
+
