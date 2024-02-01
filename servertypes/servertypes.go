@@ -2,10 +2,11 @@ package servertypes
 
 import (
 	"errors"
+	"fmt"
+	"io"
 	"math/rand"
 	wearablepb "test/test/protobuf/wearable"
 	"time"
-
 	// "google.golang.org/genproto/googleapis/rpc/code"
 	// "google.golang.org/grpc/codes"
 	// "google.golang.org/grpc/internal/status"
@@ -36,7 +37,39 @@ func (w *Wearable) BeatsPerMinute(req *wearablepb.BeatsPerMinutesRequest, stream
 
 }
 
+func (w *Wearable) CalculateBeatsPerMinute(stream wearablepb.WearableService_CalculateBeatsPerMinuteServer) error {
+	var count, total uint32
+	for {
+		req, err := stream.Recv()
+	
+		if err == io.EOF {
+			fmt.Println("end of thew file")
+			return nil
+		}
+		if err != nil {
+			return err
+		}
+
+		total += req.GetValue()
+		fmt.Println("recueved", req.GetValue())
+
+		count++
+		if count%5 == 0 {
+			fmt.Println("total", total, "average", float32(total/5))
+			err := stream.Send(&wearablepb.CalculateResponse{Average: float32(total / 5)})
+			if err != nil {
+				return nil
+			}
+			total = 0
+		}
+
+	
+	}
+}
+
 // type WearableServiceServer interface {
 // 	BeatsPerMinute(*BeatsPerMinutesRequest, WearableService_BeatsPerMinuteServer) error
 // 	mustEmbedUnimplementedWearableServiceServer()
 // }
+
+// CalculateBeatsPerMinute(WearableService_CalculateBeatsPerMinuteServer) error

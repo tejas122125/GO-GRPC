@@ -9,6 +9,8 @@ import (
 	servertypes "test/servertypes"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
+
 )
 
 type userservice struct {
@@ -41,6 +43,7 @@ func main() {
 	grpcServer := grpc.NewServer()
 	userpb.RegisterUserServiceServer(grpcServer, &userservice{})
 	wearablepb.RegisterWearableServiceServer(grpcServer, &servertypes.Wearable{})
+	reflection.Register(grpcServer)
 	grpcServer.Serve(lis)
 
 	// type UserServiceServer interface {

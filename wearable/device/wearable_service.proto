@@ -6,6 +6,7 @@ option go_package="test/protobuf/wearable";
 
 service WearableService {
     rpc BeatsPerMinute(BeatsPerMinutesRequest) returns (stream BeatsPerMinuteResponse) {};
+    rpc CalculateBeatsPerMinute(stream CalculateRequest) returns(stream CalculateResponse) {};
 }
 // always use camel case while writing global struct type and field values
 
@@ -19,3 +20,12 @@ message  BeatsPerMinuteResponse {
    uint32 minute =2;
 }
 
+message CalculateRequest{
+string Id = 1;
+uint32 Value = 2;
+uint32 Minute =3;
+}
+
+message CalculateResponse{
+float Average =1;
+}
