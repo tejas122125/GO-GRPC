@@ -46,8 +46,4 @@ func main() {
 	reflection.Register(grpcServer)
 	grpcServer.Serve(lis)
 
-	// type UserServiceServer interface {
-	// 	GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error)
-	// 	mustEmbedUnimplementedUserServiceServer()
-	// }
 }

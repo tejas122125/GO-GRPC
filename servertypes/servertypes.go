@@ -7,9 +7,6 @@ import (
 	"math/rand"
 	wearablepb "test/test/protobuf/wearable"
 	"time"
-	// "google.golang.org/genproto/googleapis/rpc/code"
-	// "google.golang.org/grpc/codes"
-	// "google.golang.org/grpc/internal/status"
 )
 
 type Wearable struct {
@@ -73,3 +70,10 @@ func (w *Wearable) CalculateBeatsPerMinute(stream wearablepb.WearableService_Cal
 // }
 
 // CalculateBeatsPerMinute(WearableService_CalculateBeatsPerMinuteServer) error
+// type WearableServiceServer interface {
+// 	BeatsPerMinute(*BeatsPerMinutesRequest, WearableService_BeatsPerMinuteServer) error
+// 	mustEmbedUnimplementedWearableServiceServer()
+// }
+
+// CalculateBeatsPerMinute(WearableService_CalculateBeatsPerMinuteServer) error
+
